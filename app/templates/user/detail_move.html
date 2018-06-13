@@ -1,0 +1,7 @@
+{% extends 'common/base.html' %}
+
+{% block title %}详细信息{% endblock %}
+{% from 'common/macro.html' import show_pagination %}
+{% block page_content %}
+    <iframe src="https://www.vmovier.com/{{p.postid}}?qingapp=app_new"></iframe>
+{% endblock %}

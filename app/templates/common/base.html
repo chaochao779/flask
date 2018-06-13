@@ -1,0 +1,150 @@
+{# 继承自bootstrap基础模板 #}
+{% extends 'bootstrap/base.html' %}
+
+{# 导入用于快速渲染表单的宏 #}
+{% from 'bootstrap/wtf.html' import quick_form %}
+
+{% block title %}超超网站{% endblock %}
+
+{% block navbar %}
+    <nav class="navbar navbar-inverse" style="border-radius: 0px;">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                        data-target=".navbar-collapse" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="{{ url_for('main.index') }}">首页</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse">
+                <ul class="nav navbar-nav">
+                    {% if current_user.is_authenticated %}
+                        <li><a href="{{ url_for('user.move') }}">最新推荐</a></li>
+                        <li><a href="{{ url_for('user.love') }}">我的收藏</a></li>
+                    {% else %}
+                        <li><a href="{{ url_for('user.move') }}">最新推荐</a></li>
+                    {% endif %}
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                {% if current_user.is_authenticated %}
+                    <li><a href="{{ url_for('user.logout') }}">退出</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                           aria-expanded="false">{{ current_user.username }} <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="{{ url_for('user.profile') }}">详细信息</a></li>
+                            <li><a href="{{ url_for('user.modiy_code') }}">修改密码</a></li>
+                            <li><a href="{{ url_for('user.modfiy_email') }}">修改邮箱</a></li>
+                            <li><a href="{{ url_for('user.upload_image') }}">修改头像</a></li>
+                        </ul>
+                    </li>
+                {% else %}
+                    <li><a href="{{ url_for('user.login') }}">登录</a></li>
+                    <li><a href="{{ url_for('user.register') }}">注册</a></li>
+                {% endif %}
+                </ul>
+            </div><!-- /.navbar-collapse -->
+        </div><!-- /.container -->
+    </nav>
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        {# 消息闪烁 #}
+        {% for message in get_flashed_messages() %}
+            <div class="alert alert-warning alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span>
+                </button>
+                {{ message }}
+            </div>
+        {% endfor %}
+
+    {% block page_content %}
+
+    <div class="container">
+
+            <style type="text/css">
+            #d1{
+                width: 200px;
+        				height: 800px;
+        				background: cadetblue;
+        				/*设置相对定位，以自身原本位置为偏移*/
+        {#position: relative;#}
+                        float: left;
+
+        				/*设置位置偏移*/
+        				top: 100px;
+        				left: 25px;
+            }
+            #d2{
+                        width: 200px;
+        				height: 800px;
+        				background:salmon;
+        				/*设置相对定位，以自身原本位置为偏移*/
+        {#position: relative;#}
+                        float: right;
+
+        				/*设置位置偏移*/
+        				top: 100px;
+        				left: 50px;
+            }
+        </style>
+            <div id="d1" >
+        	<h4 class="title"></h4>
+        	<div class="content community">
+        		<p></p>
+        		<p><a href="http://wenda.ghostchina.com/"  target="_blank" onclick="_hmt.push(['_trackEvent', 'big-button', 'click', ])"><i class="fa fa-comments"></i> </a></p>
+        		<p><a href="http://weibo.com/ghostchinacom"  target="_blank" onclick="_hmt.push(['_trackEvent', 'big-button', 'click', ])"><i class="fa fa-weibo"></i> </a></p>
+        	</div>
+        </div>
+            <div id="d2" >
+        	<h4 class="title"></h4>
+        	<div class="content community">
+        		<p></p>
+        		<p><a href="http://wenda.ghostchina.com/"  target="_blank" onclick="_hmt.push(['_trackEvent', 'big-button', 'click', ])"><i class="fa fa-comments"></i> </a></p>
+        		<p><a href="http://weibo.com/ghostchinacom"  target="_blank" onclick="_hmt.push(['_trackEvent', 'big-button', 'click', ])"><i class="fa fa-weibo"></i> </a></p>
+        	</div>
+        </div>
+
+        <h1>欢迎进入本网站，请随便参观这里</h1>
+        <p>恩施日报社·恩施新闻网
+
+　　依托权威媒体·打造强势网络
+
+　　《恩施新闻网》(www.enshi.cn)——新闻新动力·媒体新势力
+
+　　《恩施新闻网》是恩施日报社主管主办的恩施州综合门户网站，设置有专题、 文化、 旅游、体育、教育、 健康 、图片、视点、美食、财经、汽车、房产、商城、分类、游戏等频道，开设有微博、博客、论坛、留言等互动功能。
+
+　　《恩施新闻网》将致力于宣传、贯彻党和政府的路线、方针、政策和法律法规，发布本州及国内外的大事要事，提供各种民众所需信息和服务，扩大对外宣传，介绍本州政治、经济、文化及民俗、民风特色，丰富人民群众的文化生活，为我州经济社会全面发展擂鼓助威。努力建设成一个依托《恩施日报》、《恩施晚报》新闻资源，对本地新闻进行网上报道的新闻平台；全方位宣传恩施州的自然文化资源、独特人文景观的宣传平台；整合信息资源，建立政府信息资源库，发布州委州政府党务政务信息、电子商务信息、招商引资等各种信息的信息发布平台；建立以事务链为中心的政务公开系统，体现服务型政府新形象的政府形象展示平台；关注老百姓生活的点点滴滴、为老百姓的衣、食、住、行提供参考和指导的服务平台；注重社区功能开发，运用网络的互动、开放等优势，开辟网上社区，结合各行各业，建设社区综合信息网站，成为为广大网友提供交流场所的交流平台。同时，开展商务服务活动，充分利用报社的信息优势，整合商品资源，同各企业做有效链接，成为沟通客商与企业的商务服务平台。
+
+　　《恩施新闻网》编辑部
+
+　　电话(FAX)：0718-8235477易思网络科技有限公司是由一批具有国内著名网络公司服务背景的网络精英所组成，年轻、富有活力，注定一开始就是一家成熟的网络科技公司，是一家专业从事网站建设、网站推广和网络营销的互联网基础运营商。
+    我们全心致力于企事业单位建站和电子商务的应用及推广。公司拥有独立的高端服务器，托管于广州电信主干机房，提供从域名注册、虚拟主机、中文网址、企业邮箱、网站建设、网站推广、网络营销和软件开发的企业上网全程服务。行业涉及机械、医药、卫生、建筑、 IT 、纺织、娱乐、物流、咨询、房产、汽车等，具有丰富的设计经验。
+    我们以奉献网络科技而缩短人类之间沟通的距离，提升政府、企业的形象，为客户创造价值为自身的社会使命，以提供各种上网解决方案为中心开展业务工作。
+    我们从市场的角度和客户的需求出发，帮助企业极其产品树立良好的视觉形象，拓展市场空间创造竞争优势，提升企业的无形资产。
+    我们亦明知时代赋予设计师的伟大抱负和责任，须以前瞻性的眼光和精致的作品引导社会，提升民众的审美品味和生活品质，这也是设计在社会进展过程中的根本功能所在。
+    我们遵循大师的教诲，追寻前辈的足迹，努力涉取传统文化精髓，借鉴并融合诸多美学元素和艺术语言，运用现代的演绎方式，赋予作品时代的美感和深刻的内涵。</p>
+    {% endblock %}
+
+
+    </div>
+{% endblock %}
+
+{% block head %}
+    {{ super() }}
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='favicon.ico') }}"  />
+{% endblock %}
+
+
+{% block scripts %}
+    {{ super() }}
+    {{ moment.include_moment() }}
+    {{ moment.locale('zh-CN') }}
+{% endblock %}

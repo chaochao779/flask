@@ -1,0 +1,64 @@
+{#{% extends 'common/base.html' %}#}
+{##}
+{#{% block title %}修改图像{% endblock %}#}
+{#{% block page_content %}#}
+{#        <div class="container">#}
+{##}
+{#            <style type="text/css">#}
+{#            #d1{#}
+{#                width: 200px;#}
+{#        				height: 800px;#}
+{#        				background: cadetblue;#}
+{#        				/*设置相对定位，以自身原本位置为偏移*/#}
+        {#position: relative;#}
+{#                        float: left;#}
+{##}
+{#        				/*设置位置偏移*/#}
+{#        				top: 100px;#}
+{#        				left: 25px;#}
+{#            }#}
+{#            #d2{#}
+{#                        width: 200px;#}
+{#        				height: 800px;#}
+{#        				background:salmon;#}
+{#        				/*设置相对定位，以自身原本位置为偏移*/#}
+        {#position: relative;#}
+{#                        float: right;#}
+{##}
+{#        				/*设置位置偏移*/#}
+{#        				top: 100px;#}
+{#        				left: 50px;#}
+{#            }#}
+{#        </style>#}
+{#            <div id="d1" >#}
+{#        	<h4 class="title">欢迎注册哦</h4>#}
+{#        	<div class="content community">#}
+{#        		<p></p>#}
+{#        		<p><a href="http://wenda.ghostchina.com/"  target="_blank" onclick="_hmt.push(['_trackEvent', 'big-button', 'click', ])"><i class="fa fa-comments"></i> </a></p>#}
+{#        		<p><a href="http://weibo.com/ghostchinacom"  target="_blank" onclick="_hmt.push(['_trackEvent', 'big-button', 'click', ])"><i class="fa fa-weibo"></i> </a></p>#}
+{#        	</div>#}
+{#        </div>#}
+{#    <div class="container" style="float: left;width: 735px">#}
+{#        <img src="{{ img_url }}">#}
+{#         {{ quick_form(form) }}#}
+{#    </div>#}
+{#            <div id="d2" >#}
+{#        	<h4 class="title">注意信息正确哦</h4>#}
+{#        	<div class="content community">#}
+{#        		<p></p>#}
+{#        		<p><a href="http://wenda.ghostchina.com/"  target="_blank" onclick="_hmt.push(['_trackEvent', 'big-button', 'click', ])"><i class="fa fa-comments"></i> </a></p>#}
+{#        		<p><a href="http://weibo.com/ghostchinacom"  target="_blank" onclick="_hmt.push(['_trackEvent', 'big-button', 'click', ])"><i class="fa fa-weibo"></i> </a></p>#}
+{#        	</div>#}
+{#        </div>#}
+{#    </div>#}
+{#        {{ quick_form(form) }}#}
+{##}
+{#{% endblock %}#}
+{% extends 'common/base.html' %}
+
+{% block title %}修改头像{% endblock %}
+
+{% block page_content %}
+    <img src="{{ img_url }}">
+    {{ quick_form(form) }}
+{% endblock %}
